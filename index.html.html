@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Special Question 💜</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #ffffff, #e6ccff);
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #800080;
+        }
+
+        .buttons {
+            margin-top: 30px;
+            position: relative;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #a64dff;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #ff99cc;
+            color: white;
+            position: absolute;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff66b2;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-10vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Do you want to kiss me? 💋</h1>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes 💜</button>
+        <button id="noBtn">No 😜</button>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById("noBtn");
+        const yesBtn = document.getElementById("yesBtn");
+
+        // Move NO button randomly
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+        }
+
+        noBtn.addEventListener("mouseover", moveButton);
+        noBtn.addEventListener("click", moveButton);
+
+        // YES button click
+        yesBtn.addEventListener("click", function() {
+            document.body.innerHTML = `
+                <h1 style="color:#800080;">kahi k 💜</h1>
+            `;
+        });
+
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "💜";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 20 + 20 + "px";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
